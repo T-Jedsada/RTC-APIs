@@ -5,13 +5,13 @@ var app = express()
 app.use(boom());
 var port = process.env.PORT || 3000;
 
-app.get('/', function (_, res) {
+app.get('/', (_, res) => {
     res.send('RTC-APIs CNX')
 })
 
 app.get('/drivers', (_, res) => {
     requestOldAPIs('http://chiangmaibackend.yusai.asia/smartapp/APIBUSNEW//APIThebus.php')
-        .then((response) => {
+        .then(response => {
             res.send(response)
         })
         .catch(err => {
@@ -21,7 +21,7 @@ app.get('/drivers', (_, res) => {
 
 app.get('/buss', (_, res) => {
     requestOldAPIs('http://chiangmaibackend.yusai.asia/smartapp/APIBUSNEW//APIbus.php')
-        .then((response) => {
+        .then(response => {
             res.send(response)
         })
         .catch(err => {
@@ -29,9 +29,9 @@ app.get('/buss', (_, res) => {
         })
 })
 
-function requestOldAPIs(url) {
-    return new Promise(function (resolve, reject) {
-        request(url, function (error, res, body) {
+requestOldAPIs = (url) => {
+    return new Promise((resolve, reject) => {
+        request(url, (error, res, body) => {
             if (!error && res.statusCode == 200) {
                 resolve(JSON.parse(body));
             } else {
