@@ -1,9 +1,9 @@
 var express = require('express')
-var request = require('request');
-var boom = require('express-boom');
+var request = require('request')
+var boom = require('express-boom')
 var app = express()
-app.use(boom());
-var port = process.env.PORT || 3000;
+app.use(boom())
+var port = process.env.PORT || 3000
 
 app.get('/', (_, res) => {
     res.send('RTC-APIs CNX')
@@ -33,13 +33,13 @@ requestOldAPIs = (url) => {
     return new Promise((resolve, reject) => {
         request(url, (error, res, body) => {
             if (!error && res.statusCode == 200) {
-                resolve(JSON.parse(body));
+                resolve(JSON.parse(body))
             } else {
-                reject(error);
+                reject(error)
             }
         })
     })
 }
 
-app.listen(port);
-console.log("Listening on port " + port);
+app.listen(port)
+console.log("Listening on port " + port)
